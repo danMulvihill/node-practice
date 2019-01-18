@@ -12,3 +12,11 @@ fs.writeFile(__dirname+"/index.html","<h2>Hello HTML</h2>", function(error){
         return console.log("File created");
     }
 });
+
+var https = require('https');
+
+var photoLoc = "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Turdus-migratorius-002.jpg/791px-Turdus-migratorius-002.jpg"
+
+https.get(photoLoc, function(response){
+    response.pipe(fs.createWriteStream(__dirname+"/bird.jpg"));
+});
